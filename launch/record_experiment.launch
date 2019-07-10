@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<launch>
+    <!-- ROSNODE TO RECORD ROSBAG OF LIFTING TASK-->
+
+    <!-- PARAMS -->
+    <arg name="topic"  	  default="/usb_cam/image_raw /vrpn_client_node/box1/pose /vrpn_client_node/box2/pose /vrpn_client_node/box3/pose /vrpn_client_node/box4/pose"/>
+	<arg name="path_save"   default="$(find lift_help_predictor)/data/bag/"/>	
+	<arg name="file_name"  	default="test"/>
+    <arg name="rviz_config"  default="$(find lift_help_predictor)/config/rviz_config.rviz"/>
+
+    <!-- TO VISUALIZE THE MARKERS AND USB CAMERA OUTPUT -->
+    <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d $(arg rviz_config)" output="screen"/>
+    <node name="usb_cam_image_view" pkg="image_view" type="image_view" args ='image:=/usb_cam/image_raw'/>
+
+    <!-- GET POSE DATA FROM OPTITRACK RIGID BODIES -->
+    <node pkg="vrpn_client_ros" type="vrpn_client_node" name="vrpn_client_node" output="screen">
+        <rosparam file="$(find lift_help_predictor)/config/mocap.yaml" command="load" />
+    </node>
+
+    <node pkg="usb_cam" type="usb_cam_node" name="usb_cam" output="screen"/> 
+ 
+    <!-- CODE TO RECORD ROSBAG FILE -->
+     <include file="$(find record_ros)/launch/record_ros.launch">
+			<arg name="path_save"   value="$(arg path_save)"/>
+			<arg name="topic"  	value="$(arg topic)"/>
+			<arg name="file_name"  	value="$(arg file_name)"/>
+     </include>
+
+</launch>

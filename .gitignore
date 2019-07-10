@@ -1,0 +1,6 @@
+# IDE Setup 
+.vscode/
+
+# Avoid saving data files
+data/
+

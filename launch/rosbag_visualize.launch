@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<launch>
+
+      <!-- PARAMS -->
+    <arg name="bag_path" default="$(find lift_help_predictor)/data/bag/test_2019-07-09-14-03-05.bag"/>
+    <arg name="rviz_config"  default="$(find lift_help_predictor)/config/owc_rviz_config.rviz"/>
+
+    <!-- TO VISUALIZE THE MARKERS AND USB CAMERA OUTPUT -->
+    <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d $(arg rviz_config)" output="screen"/>
+    <node name="usb_cam_image_view" pkg="image_view" type="image_view" args ='image:=/usb_cam/image_raw'/>
+
+    <!-- PLAY BACK THE ROSBAG FILE -->
+    <node name="rosbag_play" pkg="rosbag" type="play" args="$(arg bag_path)"/>
+
+    <!-- WORLD FRAME TO SEE POSE DATA -->
+     <node pkg="tf" type="static_transform_publisher" name="world_frame_publisher" args="0.0 0.0 0.0 0.0 0.0 0.0 1.0 /world /world_rotated 100"/>
+</launch>

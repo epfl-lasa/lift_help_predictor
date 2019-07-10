@@ -1,0 +1,7 @@
+server: 128.178.145.104
+port: 3883
+frame_id: world
+broadcast_tf: true
+refresh_tracker_frequency: 1.0
+trackers:
+- idk
