@@ -1,4 +1,5 @@
 #!/bin/bash
+# BASED ON TUTORIAL: http://wiki.ros.org/rosbag/Tutorials/Exporting%20image%20and%20video%20data
 VIDEO_FILE_NAME=$1
 BAG_FILE_PATH=/home/leonardo/catkin_ws/src/lift_help_predictor/data/bag/test_2019-07-09-14-03-05.bag
  
@@ -10,7 +11,7 @@ BAG_PATH=/data/bag
 cd $PACKAGE_PATH$TEMP_PATH
 
 # Convert to images in a temporary folder
-rosrun image_view extract_images image:=/usb_cam/image_raw _sec_per_frame:=0.03 __name:=extract_images &
+rosrun image_view extract_images image:=/usb_cam/image_raw _sec_per_frame:=0.01 __name:=extract_images &
 rosbag play $BAG_FILE_PATH
 rosnode kill extract_images
 

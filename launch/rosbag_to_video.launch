@@ -1,4 +1,0 @@
-<?xml version="1.0" ?>
-<launch>
-    <node name="rosbag_to_video" pkg="lift_help_predictor" type="rosbag_to_video.bash" args="fileNAMEHERE.mp4"/>
-</launch>

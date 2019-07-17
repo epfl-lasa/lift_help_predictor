@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<launch>
+
+      <!-- PROCESS ALL ROSBAG RECORDINGS FROM PARTICIPANT -->
+    <arg name="participant" default="leonardo"/>
+    <!-- MAKE SURE TO HAVE SAME TOPICS AS record_experiment.launch -->
+    <arg name="topic_names" default= "[
+                                   /usb_cam/image_raw,
+                                   /vrpn_client_node/box1/pose, 
+                                   /vrpn_client_node/box2/pose, 
+                                   /vrpn_client_node/head_front/pose,
+                                   /vrpn_client_node/head_left/pose,
+                                   /vrpn_client_node/head_right/pose, 
+                                   /vrpn_client_node/wrist_right/pose,
+                                   /vrpn_client_node/wrist_left/pose, 
+                                   /vrpn_client_node/bicep_right/pose,
+                                   /vrpn_client_node/bicep_left/pose,
+                                   ]"
+    />
+
+    <!-- PARSE ROSBAG TO data/csv FOLDER-->
+    <node name="parse_rosbag" pkg="lifting_from_the_deep" type="parse_rosbag.py" respawn="false" output="screen">
+        <param name="participant" value="$(arg participant)" />
+        <rosparam param="topic_names" subst_value="True">$(arg topic_names)</rosparam> 
+    </node>
+</launch>

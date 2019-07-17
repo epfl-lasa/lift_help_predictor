@@ -3,7 +3,19 @@
     <!-- ROSNODE TO RECORD ROSBAG OF LIFTING TASK-->
 
     <!-- PARAMS -->
-    <arg name="topic"  	  default="/usb_cam/image_raw /vrpn_client_node/box1/pose /vrpn_client_node/box2/pose /vrpn_client_node/box3/pose /vrpn_client_node/box4/pose"/>
+    <arg name="topic"  	  default="/usb_cam/image_raw 
+                                   /vrpn_client_node/box1/pose 
+                                   /vrpn_client_node/box2/pose 
+                                   /vrpn_client_node/head_front/pose
+                                   /vrpn_client_node/head_left/pose
+                                   /vrpn_client_node/head_right/pose 
+                                   /vrpn_client_node/wrist_right/pose
+                                   /vrpn_client_node/wrist_left/pose 
+                                   /vrpn_client_node/bicep_right/pose
+                                   /vrpn_client_node/bicep_left/pose 
+                                   "
+    />
+
 	<arg name="path_save"   default="$(find lift_help_predictor)/data/bag/"/>	
 	<arg name="file_name"  	default="test"/>
     <arg name="rviz_config"  default="$(find lift_help_predictor)/config/rviz_config.rviz"/>
@@ -19,7 +31,9 @@
 
     <node pkg="usb_cam" type="usb_cam_node" name="usb_cam" output="screen"/> 
  
-    <!-- CODE TO RECORD ROSBAG FILE -->
+    <!-- RECORD ROSBAG FILE USING BELOW COMMANDS -->
+    <!-- rosservice call /record/cmd record -->
+    <!-- rosservice call /record/cmd stop -->
      <include file="$(find record_ros)/launch/record_ros.launch">
 			<arg name="path_save"   value="$(arg path_save)"/>
 			<arg name="topic"  	value="$(arg topic)"/>
