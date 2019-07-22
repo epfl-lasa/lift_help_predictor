@@ -1,17 +1,25 @@
 <?xml version="1.0" ?>
 <launch>
 
-      <!-- PARAMS -->
+    <!-- Path to bag file, relative to lift_help_predictor/data/bag -->
     <arg name="bag_path" default="help/test_2019-07-09-14-03-05.bag"/>
     <arg name="rviz_config"  default="$(find lift_help_predictor)/config/owc_rviz_config.rviz"/>
+    <!-- Playback/visualization speed as a fraction of realtime -->
     <arg name="rate"  default="0.5"/>
+    <!-- delay until ROSBAg starts playing initially -->
     <arg name="delay"  default="3"/>
+    <!-- Used to more accurately compute velocities, and accelerations in compute_feature_metrics.py -->
+    <arg name="optitrack_rate_hz" default="120"/>
+    <!-- How many samples to include in running average of velocity, and acceleration computation -->
+    <arg name="samples_in_average" default="20"/>
+
+    <rosparam param="use_sim_time">true</rosparam>
     
     <!-- TO VISUALIZE THE MARKERS AND USB CAMERA OUTPUT -->
     <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false" args="-d $(arg rviz_config)" output="screen"/>
-    <node name="$(anon usb_cam_image_view)" pkg="image_view" type="image_view" args ='image:=/usb_cam/image_raw'/>
+    <node name="$(anon usb_cam_image_view)" pkg="image_view" type="image_view" args ='image:=/usb_cam/image_raw'/> 
 
-    <!-- PLAY BACK THE ROSBAG FILE -->
+    <!-- PLAY BACK THE ROSBAG FILE --> 
     <node name="rosbag_play" pkg="rosbag" type="play" args="-l --rate $(arg rate) -d $(arg delay) $(find lift_help_predictor)/data/bag/$(arg bag_path)"/>
 
     <!-- ANIMATE UCL POSE IF rosbag_to_csv HAS BEEN RUN -->
@@ -20,6 +28,17 @@
       <param name="rate" value="$(arg rate)"/>
     </node>
     
-    <!-- WORLD FRAME TO SEE POSE DATA -->
+    <!-- FOR PLOTTING 2D METRICS -->
+    <node name="rqt_plot" pkg="rqt_plot" type="rqt_plot" args=
+                                  "/vrpn_client_node/box1/pose/accel/data">
+    </node>
+
+    <!-- FOR COMPUTING 2D METRICS SEEN IN rqt_plot-->
+    <node name="compute_feature_metrics" pkg="lift_help_predictor" type="compute_feature_metrics.py" output="screen">
+        <param name="optitrack_rate_hz" value="$(arg optitrack_rate_hz)" />
+        <param name="samples_in_average" value="$(arg samples_in_average)" />
+    </node>
+
+    <!-- WORLD FRAME TO BE ABLE TO SEE POSE DATA -->
      <node pkg="tf" type="static_transform_publisher" name="world_frame_publisher" args="0.0 0.0 0.0 0.0 0.0 0.0 1.0 /world /world_rotated 100"/>
 </launch>
