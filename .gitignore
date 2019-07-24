@@ -4,3 +4,5 @@
 # Avoid saving data files
 data/
 
+__pycache__/
+*.pyc

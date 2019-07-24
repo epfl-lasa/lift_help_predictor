@@ -3,7 +3,7 @@
 
       <!-- PROCESS ALL ROSBAG RECORDINGS FROM PARTICIPANT -->
     <arg name="participant" default="leonardo"/>
-    <!-- MAKE SURE TO HAVE SAME TOPICS AS record_experiment.launch -->
+    <!-- MAKE SURE TO HAVE SAME TOPICS TO PARSE AS record_experiment.launch -->
     <arg name="topic_names" default= "[
                                    /usb_cam/image_raw,
                                    /vrpn_client_node/box1/pose, 
@@ -18,9 +18,15 @@
                                    ]"
     />
 
-    <!-- PARSE ROSBAG TO data/csv FOLDER-->
+    <!-- PARSE ROSBAG TO data/csv FOLDER
     <node name="parse_rosbag" pkg="lifting_from_the_deep" type="parse_rosbag.py" respawn="false" output="screen">
         <param name="participant" value="$(arg participant)" />
         <rosparam param="topic_names" subst_value="True">$(arg topic_names)</rosparam> 
-    </node>
+    </node> -->
+    
+    <!-- PARSE ROSBAG TO data/csv FOLDER -->
+    <node name="parse_rosbag" pkg="lift_help_predictor" type="parse_rosbag.py" respawn="false" output="screen">
+        <param name="participant" value="$(arg participant)" />
+        <rosparam param="topic_names" subst_value="True">$(arg topic_names)</rosparam> 
+    </node> 
 </launch>

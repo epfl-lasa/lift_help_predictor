@@ -1,0 +1,4 @@
+[submodule "src/Lifting-from-the-Deep-release"]
+	path = src/Lifting-from-the-Deep-release
+	url = https://github.com/DenisTome/Lifting-from-the-Deep-release
+	branch = master

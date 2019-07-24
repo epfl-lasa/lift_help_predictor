@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
-# license removed for brevity
 import rospy
 from std_msgs.msg import Float64
 from geometry_msgs.msg import PoseStamped, TwistStamped, AccelStamped, Vector3Stamped, Vector3

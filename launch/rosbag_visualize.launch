@@ -23,7 +23,7 @@
     <node name="rosbag_play" pkg="rosbag" type="play" args="-l --rate $(arg rate) -d $(arg delay) $(find lift_help_predictor)/data/bag/$(arg bag_path)"/>
 
     <!-- ANIMATE UCL POSE IF rosbag_to_csv HAS BEEN RUN -->
-    <node name="pose_anim" pkg="lifting_from_the_deep" type="pose_anim.py" output="screen">
+    <node name="pose_anim" pkg="lift_help_predictor" type="pose_anim.py" output="screen">
       <param name="bag_path" value="$(arg bag_path)" />
       <param name="rate" value="$(arg rate)"/>
     </node>
