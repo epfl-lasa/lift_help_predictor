@@ -28,7 +28,8 @@
     <node pkg="vrpn_client_ros" type="vrpn_client_node" name="vrpn_client_node" output="screen">
         <rosparam file="$(find lift_help_predictor)/config/mocap.yaml" command="load" />
     </node>
-
+    
+    <!-- CONNECT TO USB CAMERA -->
     <node pkg="usb_cam" type="usb_cam_node" name="usb_cam" output="screen"/> 
  
     <!-- RECORD ROSBAG FILE USING BELOW COMMANDS -->
