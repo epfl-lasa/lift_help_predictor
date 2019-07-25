@@ -13,7 +13,7 @@ The code is compatible with [Python2.7](https://www.python.org/download/releases
  - [Tensorflow 1.0](https://www.tensorflow.org/)
  - [OpenCV](http://opencv.org/)
 
-The following ROS packages are used (and were tested with [ROS indigo]()): 
+The following ROS packages are used (tested with [ROS indigo]()): 
  - [vrpn_client_ros](http://wiki.ros.org/vrpn_client_ros) 
  - [image_view](http://wiki.ros.org/image_view)
  
@@ -34,8 +34,13 @@ $ source setup.sh
 ```
 
 ### Testing 
-TALK about test data included here.
+To test the code, there is demo data in the ```lift_help_predictor/data/``` directory. To visualize the demo data, enter the following command: 
+
+```
+$ roslaunch lift_help_predictor rosbag_visualize.launch
+```
 
 ### Additional Material 
-TODO: add references to other documentation.md files 
+Consult the .md files in ```lift_help_predictor/docs/``` for further documentation and useful instructions about how to use the code. 
+
 
