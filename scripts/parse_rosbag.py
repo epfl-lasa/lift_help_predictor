@@ -57,42 +57,41 @@ def parse_rosbag():
       image_topic = topic 
 
   # Process all ROSBAG recordings for each participant. 
-  for dir_name in os.listdir(BAG_DIR_PATH):
-    for file_name in os.listdir(os.path.join(BAG_DIR_PATH, dir_name)):
-      if participant_name in file_name:
-        print "Processing " + file_name + "..."
-        last_mocap_msgs = {}  # Used to downsample motion capture to camera sampling rate
-        modelInitialized = False
+  for file_name in os.listdir(os.path.join(BAG_DIR_PATH)):
+    if participant_name in file_name:
+      print "Processing " + file_name + "..."
+      last_mocap_msgs = {}  # Used to downsample motion capture to camera sampling rate
+      modelInitialized = False
 
-        bag_file_path = os.path.join(os.path.join(BAG_DIR_PATH, dir_name), file_name)
-        bag = rosbag.Bag(bag_file_path)
-        msgs = bag.read_messages(topic_names)
-        
-        csv_dir = os.path.join(CSV_DIR_PATH, dir_name)
-        csv_file_name = file_name.split('.bag')[0] + ".csv"
+      bag_file_path = os.path.join(os.path.join(BAG_DIR_PATH), file_name)
+      bag = rosbag.Bag(bag_file_path)
+      msgs = bag.read_messages(topic_names)
+      
+      csv_dir = os.path.join(CSV_DIR_PATH)
+      csv_file_name = file_name.split('.bag')[0] + ".csv"
 
-        with open(os.path.join(csv_dir, csv_file_name), 'wb') as csvfile:
-          csv_writer = csv.writer(csvfile, delimiter=',', quotechar=' ', quoting=csv.QUOTE_MINIMAL)
-          write_csv_field_names(csv_writer, UCL_JOINT_NAMES, topic_names)
+      with open(os.path.join(csv_dir, csv_file_name), 'wb') as csvfile:
+        csv_writer = csv.writer(csvfile, delimiter=',', quotechar=' ', quoting=csv.QUOTE_MINIMAL)
+        write_csv_field_names(csv_writer, UCL_JOINT_NAMES, topic_names)
 
-          for subtopic, msg, t in msgs:
-            # Downsample to rate of camera. Take last sample for motion capture. 
-            if subtopic == image_topic:   
-              image = CvBridge().imgmsg_to_cv2(msg)
+        for subtopic, msg, t in msgs:
+          # Downsample to rate of camera. Take last sample for motion capture. 
+          if subtopic == image_topic:   
+            image = CvBridge().imgmsg_to_cv2(msg)
 
-              if not modelInitialized:
-                pose_estimator = PoseEstimator(image.shape, SESSION_PATH, PROB_MODEL_PATH)
-                pose_estimator.initialise()
-                modelInitialized = True
-                print "Processing " + file_name + "..."
+            if not modelInitialized:
+              pose_estimator = PoseEstimator(image.shape, SESSION_PATH, PROB_MODEL_PATH)
+              pose_estimator.initialise()
+              modelInitialized = True
+              print "Processing " + file_name + "..."
 
-              # Run 'lifting from the deep algorithm'
-              pose_2d, visibility, pose_3d = pose_estimator.estimate(image) 
+            # Run 'lifting from the deep algorithm'
+            pose_2d, visibility, pose_3d = pose_estimator.estimate(image) 
 
-              # Write motion capture and 'Lifting from the deep' output to .csv.
-              write_data_to_csv(csv_writer, pose_3d, last_mocap_msgs, topic_names, t)
-            else:
-              last_mocap_msgs[subtopic] = msg  # Save most recent sample for downsampling
+            # Write motion capture and 'Lifting from the deep' output to .csv.
+            write_data_to_csv(csv_writer, pose_3d, last_mocap_msgs, topic_names, t)
+          else:
+            last_mocap_msgs[subtopic] = msg  # Save most recent sample for downsampling
 
   # close model for lifting from the deep' algorithm
   pose_estimator.close()

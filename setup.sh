@@ -11,3 +11,6 @@ git clone https://github.com/epfl-lasa/record_ros
 roscd lift_help_predictor/ 
 mkdir -p data/csv
 mkdir -p data/bag
+
+# Setup model and dependencies for the Lifting from the deep algorithm.
+source src/Lifting-from-the-Deep-release/setup.sh

@@ -1,12 +1,11 @@
 # lift_help_predictor
-A collection of tools used to gather, visualize, and analyze human joint data. Later, this data is to be used to train an algorithm which identifies human need for help during lifting and carrying tasks.
+A collection of tools used to gather, visualize, and analyze human joint data. Later, this data will train an algorithm to identify human need for help during lifting and carrying tasks.
 
 ![](docs/demo.png) 
 
 The code captures human pose data using two methods: 
  - [OptiTrack Motion Capture](https://optitrack.com/)
  - [Lifting from the Deep: Convolutional 3D Pose Estimation from a Single Image](https://arxiv.org/abs/1701.00295)
-
 
 
 ### Dependencies 

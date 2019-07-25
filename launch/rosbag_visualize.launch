@@ -7,7 +7,7 @@
     <!-- Playback/visualization speed as a fraction of realtime -->
     <arg name="rate"  default="0.5"/>
     <!-- delay until ROSBAg starts playing initially -->
-    <arg name="delay"  default="3"/>
+    <arg name="delay"  default="0"/>
     <!-- Used to more accurately compute velocities, and accelerations in compute_feature_metrics.py -->
     <arg name="optitrack_rate_hz" default="120"/>
     <!-- How many samples to include in running average of velocity, and acceleration computation -->
