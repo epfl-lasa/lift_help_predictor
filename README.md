@@ -16,6 +16,7 @@ The code is compatible with [Python2.7](https://www.python.org/download/releases
 The following ROS packages are used (tested with [ROS indigo]()): 
  - [vrpn_client_ros](http://wiki.ros.org/vrpn_client_ros) 
  - [image_view](http://wiki.ros.org/image_view)
+ - [record_ros](https://github.com/epfl-lasa/record_ros)
  
 For 3D Human Pose Estimation using computer vision, the below repository is included as [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules): 
    - [Lifting from the Deep](https://github.com/DenisTome/Lifting-from-the-Deep-release) 
