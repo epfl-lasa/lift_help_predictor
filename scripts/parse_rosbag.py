@@ -59,7 +59,7 @@ def parse_rosbag():
   # Process all ROSBAG recordings for each participant. 
   for file_name in os.listdir(os.path.join(BAG_DIR_PATH)):
     if participant_name in file_name:
-      print "Processing " + file_name + "..."
+      print("Processing " + file_name + "...")
       last_mocap_msgs = {}  # Used to downsample motion capture to camera sampling rate
       modelInitialized = False
 
@@ -83,7 +83,7 @@ def parse_rosbag():
               pose_estimator = PoseEstimator(image.shape, SESSION_PATH, PROB_MODEL_PATH)
               pose_estimator.initialise()
               modelInitialized = True
-              print "Processing " + file_name + "..."
+              print("Processing " + file_name + "...")
 
             # Run 'lifting from the deep algorithm'
             pose_2d, visibility, pose_3d = pose_estimator.estimate(image) 
