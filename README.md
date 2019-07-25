@@ -40,7 +40,7 @@ To test the code, there is demo data in the ```lift_help_predictor/data/``` dire
 $ roslaunch lift_help_predictor rosbag_visualize.launch
 ```
 
-### Additional Material 
+### Documentation 
 Consult the .md files in ```lift_help_predictor/docs/``` for further documentation and useful instructions about how to use the code. 
 
 
