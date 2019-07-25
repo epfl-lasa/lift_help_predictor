@@ -1,7 +1,7 @@
 # lift_help_predictor documentation
 The files in this folder explain the code in three parts: 
 
-#####1. Recording
+##### 1. Recording
 Scripts are included to record OptiTrack motion capture and RGB camera data. See [recording.md](./recording.md) for further details.   
 
 ##### 2. Parsing 
