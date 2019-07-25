@@ -2,7 +2,7 @@
 <launch>
 
     <!-- Path to bag file, relative to lift_help_predictor/data/bag -->
-    <arg name="bag_path" default="help/test_2019-07-09-14-03-05.bag"/>
+    <arg name="bag_path" default="demo.bag"/>
     <arg name="rviz_config"  default="$(find lift_help_predictor)/config/owc_rviz_config.rviz"/>
     <!-- Playback/visualization speed as a fraction of realtime -->
     <arg name="rate"  default="0.5"/>

@@ -12,4 +12,5 @@ roscd lift_help_predictor/
 mkdir -p data/csv
 
 # Setup model and dependencies for the Lifting from the deep algorithm.
-source src/Lifting-from-the-Deep-release/setup.sh
+roscd lift_help_predictor/src/Lifting-from-the-Deep-release
+source setup.sh

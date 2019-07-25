@@ -5,6 +5,7 @@
 data/bag/*.bag
 !data/bag/demo.bag
 data/csv/*.csv
+!data/csv/demo.csv 
 
 __pycache__/
 *.pyc
