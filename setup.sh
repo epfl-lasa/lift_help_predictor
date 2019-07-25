@@ -7,10 +7,6 @@ sudo apt-get install ros-$(rosversion -d)-image-view
 roscd lift_help_predictor/../
 git clone https://github.com/epfl-lasa/record_ros
 
-# Create directories to store parsed data
-roscd lift_help_predictor/ 
-mkdir -p data/csv
-
 # Setup model and dependencies for the Lifting from the deep algorithm.
 roscd lift_help_predictor/src/Lifting-from-the-Deep-release
 source setup.sh

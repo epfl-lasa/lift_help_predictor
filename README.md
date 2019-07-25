@@ -33,13 +33,6 @@ $ cd lift_help_predictor/
 $ source setup.sh
 ```
 
-Setup the model and dependencies for the [Lifting from the Deep](https://github.com/DenisTome/Lifting-from-the-Deep-release) submodule: 
-
-```
- $ cd src/Lifting-from-the-Deep-release
- $ source setup.sh
-```
-
 ### Testing 
 TALK about test data included here.
 
