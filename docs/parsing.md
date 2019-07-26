@@ -1,7 +1,11 @@
 # Parsing
 
 ### Overview 
-In order to extract only joint and object pose data, [ROS bag](http://wiki.ros.org/Bags) files may be parsed into .csv files. As well, using the USB camera recording, human joint positions are retreieved using the [Lifting from the Deep](https://github.com/DenisTome/Lifting-from-the-Deep-release) algorithm.
+In order to extract only joint and object pose data in a convenient format for learning, the following are written to .csv files: 
+* Optitrack marker poses
+* 3D Human joint positions 
+
+The Optitrack marker poses are retrieved directly from the [ROS bag](http://wiki.ros.org/Bags) file. 3D human joint positions are calculated using [Lifting from the Deep](https://github.com/DenisTome/Lifting-from-the-Deep-release) algorithm, and the camera recording stored in the [ROS bag](http://wiki.ros.org/Bags) file.
 
 Files are retrieved from the ```data/bag``` directory, and stored in the ```data/csv``` directory. The current implementation creates a .csv file for each recording. 
 

@@ -1,5 +1,9 @@
 # lift_help_predictor documentation
-The files in this folder explain the code in three parts: 
+### Algorithm  
+The purpose of these scripts is to perform data manipulations that can later train a learning algorithm. Included is a brief, high-level discussion about how algorithm may work. See [algorithm.md](./algorithm.md)
+
+### Code 
+Other files in this folder explain the code in three parts: 
 
 ##### 1. Recording
 Scripts are included to record OptiTrack motion capture and RGB camera data. See [recording.md](./recording.md) for further details.   
