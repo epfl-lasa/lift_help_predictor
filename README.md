@@ -42,6 +42,6 @@ $ roslaunch lift_help_predictor rosbag_visualize.launch
 ```
 
 ### Documentation 
-Consult the .md files in ```lift_help_predictor/docs/``` for further documentation and useful instructions about how to use the code. 
+Consult the .md files in [```lift_help_predictor/docs/```](./docs/README.md) for further documentation and useful instructions about how to use the code. 
 
 

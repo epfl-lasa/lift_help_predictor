@@ -1,4 +1,4 @@
-#Algorithm 
+# Algorithm 
 
 ### Overview
 Humans are able to detect easily whether another human is struggling with lifting an object from their body language. For instance, it is simple for a person to see that another person needs help placing heavy luggage into an overhead bin on a plane. So, with knowledge about others' need of help, humans are able to determine assist others without an explicit request. 
