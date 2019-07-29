@@ -1,6 +1,4 @@
 # lift_help_predictor
-Jayden Leong, Baptiste Busch, Leonardo Urbano 
-
 A collection of tools used to gather, visualize, and analyze human joint data. Later, this data will train an algorithm to identify human need for help during lifting and carrying tasks.
 
 ![](data/demo.png) 
